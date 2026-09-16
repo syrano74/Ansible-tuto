@@ -1,0 +1,7 @@
+[serveurs]
+server1 ansible_host=192.168.201.128 ansible_port=2200 ansible_ssh_private_key_file=~/.ssh/sshagt
+server2 ansible_host=192.168.201.128 ansible_port=2201 ansible_user=root ansible_ssh_private_key_file=~/.ssh/sshagt
+server3 ansible_host=192.168.201.128 ansible_port=2202 ansible_ssh_private_key_file=~/.ssh/sshagt
+
+[serveurs:vars]
+ansible_user=root
