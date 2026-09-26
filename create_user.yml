@@ -1,0 +1,10 @@
+---
+
+- hosts: serveurs
+  tasks:
+    - name: create user account
+      ansible.builtin.user:
+        name: toto
+        groups: mail 
+        shell: /bin/bash
+        state: present

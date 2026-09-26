@@ -1,0 +1,28 @@
+---
+
+- name: install and start apache
+  hosts: serveurs
+  become: true
+  tasks:
+    - name: install apache on ubuntu and debian
+      apt: 
+        name: apache2
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: install apache on almalinux
+      dnf:
+        name: httpd
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: start apache on ubuntu and debian using command
+      command: apache2ctl start
+      args:
+        creates: /var/run/apache2/apache2.pid
+      when: ansible_os_family == 'Debian'
+
+    - name: start apache on almalinux
+      shell:
+        cmd: "nohup httpd > /var/log/httpd/ansible-start.log 2>&1 &"
+      when: ansible_os_family == 'RedHat'
